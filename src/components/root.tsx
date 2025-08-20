@@ -2,7 +2,7 @@ import { defineComponent } from "vue";
 
 const _root = defineComponent({
     name: "Root",
-    setup(props, { slots }) {
+    setup(_props, { slots }) {
         console.log("slots", slots)
         return () => (
               <>

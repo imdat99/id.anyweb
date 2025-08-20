@@ -1,11 +1,10 @@
-import 'uno.css'
-import { createSSRApp, h } from 'vue'
-import { createWebHistory, RouterView, type RouterHistory } from 'vue-router'
-import _root from './components/root'
+import { createSSRApp } from 'vue'
+import { RouterView } from 'vue-router'
+import _r from './router'
 // const router from './router'
-export async function createApp(rh: RouterHistory) {
-    const router = await import('./router').then(m => m.default(rh))
-    const vueApp = createSSRApp(h(_root,undefined, h(RouterView) ))
+export async function createApp() {
+    const router = _r()
+    const vueApp = createSSRApp(RouterView)
     vueApp.use(router)
     return {
         app: vueApp,
@@ -13,12 +12,3 @@ export async function createApp(rh: RouterHistory) {
     }
 }
 
-async function render() {
-    const { app, router } = await createApp(createWebHistory())
-    router.isReady().then(() => {
-        app.mount(document.documentElement, true)
-    })
-}
-render().catch((error) => {
-    console.error('Error during app initialization:', error)
-});

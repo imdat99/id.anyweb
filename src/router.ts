@@ -1,7 +1,7 @@
-import { createRouter, type RouterHistory } from "vue-router";
+import { createMemoryHistory, createRouter, createWebHistory } from "vue-router";
 
-const router = (rh: RouterHistory) => createRouter({
-    history: rh,
+const router = (fn = (typeof window === undefined ? createWebHistory : createMemoryHistory)) => createRouter({
+    history: fn(),
     routes: [
         {
             path: "/",
