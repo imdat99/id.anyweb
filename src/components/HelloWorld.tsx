@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue';
-
+import { Button as ArcoButton } from '@arco-design/web-vue';
 interface Props {
   msg: string;
 }
@@ -19,12 +19,12 @@ export default defineComponent({
       <>
         <h1>{props.msg}</h1>
         <div class="card">
-          <button type="button" onClick={() => { 
+          <ArcoButton onClick={() => { 
             count.value++
             inputValue.value += count.value
             }}>
             count is {count.value}
-          </button>
+          </ArcoButton>
           <p>
             Edit <code>components/HelloWorld.tsx</code> to test HMR {inputValue.value}
           </p>

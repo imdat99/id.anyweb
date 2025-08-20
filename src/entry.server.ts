@@ -36,7 +36,6 @@ const getHead = () => {
 export default async function handler(_request: Request): Promise<Response> {
   const url = new URL(_request.url);
   const { stream } = await render(url.href.replace(url.origin, ""));
-
   return new Response(
     stream.pipeThrough(
       new TransformStream({
