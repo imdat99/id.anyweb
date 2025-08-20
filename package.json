@@ -1,0 +1,25 @@
+{
+  "name": "id.anyweb",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.5.18",
+    "vue-router": "4"
+  },
+  "devDependencies": {
+    "@hiogawa/vite-plugin-nitro": "^0.0.1",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitejs/plugin-vue-jsx": "^5.0.1",
+    "@vue/tsconfig": "^0.7.0",
+    "typescript": "~5.8.3",
+    "unocss": "^66.4.2",
+    "vite": "npm:rolldown-vite@^7.1.4",
+    "vue-tsc": "^3.0.5"
+  }
+}
