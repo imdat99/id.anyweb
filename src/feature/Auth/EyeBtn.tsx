@@ -1,25 +1,26 @@
 import { IconEyeClosedSolid, IconEyeOpened } from '@kousum/semi-icons-vue';
-import { defineComponent, h, toRef } from "vue";
+import { defineComponent, h, type PropType } from "vue";
 
 export default defineComponent({
   name: 'EyeBtn',
   props: {
     inputType: {
       type: String,
-      default: 'password',
+      required: true,
+    },
+    onClick: {
+      type: Function as PropType<(event: MouseEvent) => void>,
       required: true,
     }
   },
   setup(props) {
-    const type = toRef(props.inputType); 
+    const {onClick} = props
     return () => (
       <button
         class="flex items-center justify-center mr-2 cursor-pointer"
-        onClick={() => {
-          type.value = type.value === 'password' ? 'text' : 'password';
-        }}
+        onClick={onClick}
         >
-        {h(type.value === 'password' ? IconEyeClosedSolid : IconEyeOpened, { size: "large" })}
+        {h(props.inputType === 'password' ? IconEyeClosedSolid : IconEyeOpened, { size: "large" })}
       </button>
     )
   }

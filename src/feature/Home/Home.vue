@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HelloWorld from "@/components/HelloWorld";
+import HelloWorld from "components/HelloWorld";
 import { Input } from "@kousum/semi-ui-vue";
 
 </script>

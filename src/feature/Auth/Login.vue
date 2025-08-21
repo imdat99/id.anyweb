@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Button from '@/components/ui/Button.vue';
+import Button from 'components/ui/Button.vue';
 import { Input } from '@kousum/semi-ui-vue';
 import { IconMail, IconLock, IconEyeClosedSolid, IconEyeOpened } from '@kousum/semi-icons-vue';
 import { ref,h, computed } from 'vue';
@@ -48,8 +48,8 @@ const inpPasswordType = ref('password');
           :type="inpPasswordType"
           :placeholder="$t('auth:login.passwordPlaceholder')"
             :prefix="h(IconLock, {size: 'large'})"
-            :suffix="h(EyeBtn, { inpPasswordType })"
-        />
+            :suffix="h(EyeBtn, { inputType: inpPasswordType, onClick: () => { inpPasswordType = inpPasswordType === 'password' ? 'text' : 'password'; } })"
+            />
         <Button
           class="w-full py-2 font-medium select-none"
           type="submit"

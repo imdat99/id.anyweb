@@ -10,19 +10,19 @@ const router =  createRouter({
                 {
                     path: "",
                     name: "Home",
-                    component: () => import("./feature/Home/Home.vue")
+                    component: () => import("feature/Home/Home.vue")
                 },
             ]
         },
         {
             path: "/auth",
             name: "Auth",
-            component: () => import("./feature/Auth/Layout.vue"),
+            component: () => import("feature/Auth/Layout.vue"),
             children: [
                 {
                     path: "login",
                     name: "Login",
-                    component: () => import("@/feature/Auth/Login.vue")
+                    component: () => import("feature/Auth/Login.vue")
                 },
             ]
         }
