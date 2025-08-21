@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import Button from 'components/ui/Button.vue';
+import { IconLock, IconMail } from '@kousum/semi-icons-vue';
 import { Input } from '@kousum/semi-ui-vue';
-import { IconMail, IconLock, IconEyeClosedSolid, IconEyeOpened } from '@kousum/semi-icons-vue';
-import { ref,h, computed } from 'vue';
-import EyeBtn from './EyeBtn';
-const inpPasswordType = ref('password');
+import Button from 'components/ui/Button.vue';
+import { h } from 'vue';
 </script>
 <template>
       <div class="text-center">
@@ -40,16 +38,16 @@ const inpPasswordType = ref('password');
 
       <div class="space-y-4">
         <Input
+          class="!rounded-md"
           type="email"
           :placeholder="$t('auth:login.emailPlaceholder')"
           :prefix="h(IconMail, {size: 'large'})"
         />
         <Input
-          :type="inpPasswordType"
+          mode="password"
+          class="!rounded-md"
           :placeholder="$t('auth:login.passwordPlaceholder')"
-            :prefix="h(IconLock, {size: 'large'})"
-            :suffix="h(EyeBtn, { inputType: inpPasswordType, onClick: () => { inpPasswordType = inpPasswordType === 'password' ? 'text' : 'password'; } })"
-            />
+            :prefix="h(IconLock, {size: 'large'})" />
         <Button
           class="w-full py-2 font-medium select-none"
           type="submit"
