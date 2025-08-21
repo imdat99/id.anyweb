@@ -1,5 +1,5 @@
+import { DatePicker } from '@kousum/semi-ui-vue';
 import { defineComponent, ref } from 'vue';
-
 interface Props {
   msg: string;
 }
@@ -33,6 +33,7 @@ export default defineComponent({
           v-model={inputValue.value}
           placeholder="Type something..."
         />
+        <DatePicker onChange={(_date, dateString) => console.log(dateString)} />
         <p>
           Check out
           <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank">

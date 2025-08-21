@@ -1,24 +1,20 @@
+import I18NextVue from 'i18next-vue'
+// import vi_VN from '@kousum/semi-ui-vue/dist/locale/source/vi_VN'
 import 'uno.css'
-import { createSSRApp, h } from 'vue'
-import { createWebHistory, RouterView, type RouterHistory } from 'vue-router'
-import _root from './components/root'
+import { createApp, h } from 'vue'
+import { RouterView } from 'vue-router'
+import i18n from './translation'
 // const router from './router'
-export async function createApp(rh: RouterHistory) {
-    const router = await import('./router').then(m => m.default(rh))
-    const vueApp = createSSRApp(h(_root,undefined, h(RouterView) ))
-    vueApp.use(router)
-    return {
-        app: vueApp,
-        router
-    }
-}
 
 async function render() {
-    const { app, router } = await createApp(createWebHistory())
+    const router = await import('./router').then((m) => m.default)
+    const app = createApp(RouterView)
+    app.use(I18NextVue, {i18next: i18n})
+    app.use(router)
     router.isReady().then(() => {
-        app.mount(document.documentElement, true)
+        app.mount('#app', true)
     })
 }
 render().catch((error) => {
     console.error('Error during app initialization:', error)
-});
+})
