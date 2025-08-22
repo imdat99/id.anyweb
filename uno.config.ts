@@ -16,11 +16,11 @@ export default defineConfig({
     colors: {
       border: 'hsl(214.3 31.8% 91.4%)',
       input: 'hsl(214.3 31.8% 91.4%)',
-      ring: '#fa5437',
+      ring: 'oklch(0.6276 0.2076 264.51)',
       background: 'oklch(0.98 0 0)',
       foreground: 'oklch(0.18 0 0)',
       primary: {
-        DEFAULT: '#fa5437',
+        DEFAULT: 'oklch(0.6276 0.2076 264.51)',
         foreground: 'hsl(210 40% 98%)',
       },
       secondary: {
@@ -64,4 +64,10 @@ export default defineConfig({
       },
     },
   },
+  shortcuts: [
+    {
+      focus_inp:
+        'outline-none ring-1 ring-primary shadow-[0_0_0_0.25rem] shadow-primary/10',
+    }
+  ]
 })

@@ -4,30 +4,33 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "rsbuild dev",
-    "build": "rsbuild build",
-    "preview": "rsbuild preview"
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
+    "@kousum/semi-icons-vue": "^2.78.0",
     "@kousum/semi-ui-vue": "^2.78.4",
+    "@vueuse/core": "^13.7.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "i18next": "^25.4.0",
     "i18next-http-backend": "^3.0.2",
     "i18next-vue": "^5.3.0",
     "tailwind-merge": "^3.3.1",
-    "vue": "^3.5.18",
+    "vue": "^3.5.19",
     "vue-router": "4"
   },
   "devDependencies": {
     "@douyinfe/semi-rspack-plugin": "^2.85.0",
-    "@rsbuild/core": "^1.4.15",
-    "@rsbuild/plugin-babel": "^1.0.6",
-    "@rsbuild/plugin-vue": "^1.1.1",
-    "@rsbuild/plugin-vue-jsx": "^1.1.1",
-    "@unocss/webpack": "^66.4.2",
-    "@vue/tsconfig": "^0.7.0",
+    "@types/node": "^24.3.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitejs/plugin-vue-jsx": "^5.0.1",
+    "@vue/tsconfig": "^0.8.1",
     "class-variance-authority": "^0.7.1",
-    "typescript": "~5.8.3",
+    "typescript": "~5.9.2",
     "unocss": "^66.4.2",
-    "vue-tsc": "^3.0.5"
+    "vite": "npm:rolldown-vite@^7.1.4",
+    "vue-tsc": "^3.0.6"
   }
 }
