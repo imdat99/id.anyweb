@@ -2,7 +2,9 @@
   "error": {
     "title": "Oops! Something went wrong.",
     "message": "We're having trouble loading this page. Please try again later.",
-    "reloadButton": "Reload Page"
+    "reloadButton": "Reload Page",
+    "requireFiled": "This field is required",
+    "invalidData": "Invalid data"
   },
   "select": {
     "placeholder": "Select an option",

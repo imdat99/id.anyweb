@@ -6,11 +6,12 @@ import { RouterView } from 'vue-router'
 import i18n from './translation'
 import { appComponents } from './components'
 import { withLocaleProvider } from './lib/hoc/withLocale'
+import { withErrorBoundary } from './lib/hoc/withErrorBoundary'
 // const router from './router'
 
 async function render() {
     const router = await import('./router').then((m) => m.default)
-    const app = createApp(withLocaleProvider(RouterView))
+    const app = createApp(withLocaleProvider(withErrorBoundary(RouterView)))
     app.use(I18NextVue, {i18next: i18n})
     app.use(router)
     app.use(appComponents)

@@ -8,11 +8,11 @@ import LanguageBtn from "./LanguageBtn.vue";
       <div class="flex-1 items-center flex">
         <div class=":uno: bg-white w-[calc(100vw-1rem)] md:w-[500px] max-w-md rounded-2xl p-8 space-y-6 border border-gray-100">
           <div class="flex">
-            <img
+            <!-- <img
               class="mx-auto animate-bounce-in duration-500 h-10 w-10"
               src="/vite.svg"
               alt="logo"
-            />
+            /> -->
           </div>
           <router-view />
         </div>

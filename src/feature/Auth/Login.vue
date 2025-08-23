@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { IconLock, IconMail } from '@kousum/semi-icons-vue';
-import {Form, Input} from "@kousum/semi-ui-vue"
-import { ref } from 'vue';
-const value = ref('123')
+import { Button, Form } from "@kousum/semi-ui-vue";
+import { AUTH_ROUTE } from 'src/lib/constants';
+import { h, ref } from 'vue';
+const loading = ref(false);
+// console.log(asdasdas)
+const handleSubmit = (values: any) => {
+  console.log('submit', values);
+};
 </script>
 <template>
   <div class="text-center">
@@ -29,35 +34,38 @@ const value = ref('123')
     </div>
   </div>
 
-  <Form class-name="space-y-4" layout="horizontal">
-    <v-input type="email" v-model="value" :placeholder="$t('auth:login.emailPlaceholder')">
-      <template #prefix>
-        <IconMail size="large" />
-      </template>
-    </v-input>
-    <v-input mode="password" :placeholder="$t('auth:login.passwordPlaceholder')">
-      <template #prefix>
-        <IconLock size="large" />
-      </template>
-    </v-input>
-    <Input v-model="value"/>
-    <Input v-model="value"/>
-    <div>
-      {{ value }}
-    </div>
-    <v-button class="w-full py-2 font-medium select-none" type="submit" loading={isSubmitting}>
+  <Form @submit="handleSubmit" class-name="!space-y-4" :label-position="'left'" :label-width="0">
+    <Form.Input
+      noLabel
+      field="email"
+      type="email"
+      field-class-name="!p-0 border border-gray-200"
+      :placeholder="$t('auth:login.emailPlaceholder')"
+      :prefix="h(IconMail)"
+      :rules="[{ required: true, message: $t('app:error.requireFiled') }]"
+    />
+    <Form.Input
+      noLabel
+      mode="password"
+      field-class-name="!p-0 border border-gray-200"
+      field="password"
+      :placeholder="$t('auth:login.passwordPlaceholder')"
+      :prefix="h(IconLock)"
+      :rules="[{ required: true, message: $t('app:error.requireFiled') }]"
+    />
+    <Button class="w-full py-2 font-medium select-none" theme="solid" htmlType="submit" :loading="loading">
       {{ $t('auth:login.signIn') }}
-    </v-button>
+    </Button>
   </Form>
   <div class="mt-6 mb-3 text-center text-sm">
-    <Link to={authPath.forgotPassword} class="text-blue-600 hover:underline">
+    <router-link :to="AUTH_ROUTE.ForgotPassword" class="text-blue-600 hover:(underline)">
     {{ $t('auth:login.forgotPassword') }}
-    </Link>
+    </router-link>
   </div>
   <div class="text-center text-sm text-gray-600">
     {{ $t('auth:login.noAccount') }}&nbsp;
-    <Link to={authPath.register} class="text-blue-600 hover:underline">
+    <router-link :to="AUTH_ROUTE.Register" class="text-blue-600 hover:(underline)">
     {{ $t('auth:login.signUp') }}
-    </Link>
+    </router-link>
   </div>
 </template>

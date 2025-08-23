@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import HelloWorld from "src/components/HelloWorld.tsx";
-import { Input } from "@kousum/semi-ui-vue";
+import { Button, Input } from "@kousum/semi-ui-vue";
 
 </script>
 
@@ -8,8 +7,7 @@ import { Input } from "@kousum/semi-ui-vue";
     <div class="home">
         <h1 class="title">Home Page</h1>
         <p class="description">Welcome to the Home Page!</p>
-        <HelloWorld msg="Vite + Vue 3 + TypeScript" />
         <Input type="text" placeholder="Type something..." />
-        <v-button type="primary" @click="console.log('Button clicked!')">Click Me</v-button>
+        <Button type="primary" @click="console.log('Button clicked!')">Click Me</Button>
     </div>
 </template>
