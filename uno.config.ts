@@ -1,4 +1,4 @@
-import { defineConfig, presetWebFonts, presetWind4 } from 'unocss'
+import { defineConfig, presetWebFonts, presetWind4, transformerVariantGroup, transformerCompileClass } from 'unocss'
 
 export default defineConfig({
   // ...UnoCSS options
@@ -11,6 +11,12 @@ export default defineConfig({
                 body: 'Google Sans',
             }
         }),
+    ],
+    transformers: [
+    transformerVariantGroup(),
+    transformerCompileClass({
+      classPrefix: 'xemdi_',
+    }),
     ],
     theme: {
     colors: {
@@ -66,8 +72,8 @@ export default defineConfig({
   },
   shortcuts: [
     {
-      focus_inp:
-        'outline-none ring-1 ring-primary shadow-[0_0_0_0.25rem] shadow-primary/10',
+      focus_inp: 'outline-none ring-1 ring-primary shadow-[0_0_0_0.25rem] shadow-primary/10',
+      form_input: "!p-0 [&_.semi-input-wrapper]:border-gray-300 [&_.semi-input-wrapper]:focus-within:border-[var(--semi-color-focus-border)]"
     }
   ]
 })

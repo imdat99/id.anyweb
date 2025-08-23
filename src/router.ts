@@ -26,7 +26,7 @@ const router = createRouter({
                         {
                             path: AUTH_ROUTE.Register.slice(1),
                             name: "Register",
-                            component: () => import("src/feature/Auth/Forgot.vue")
+                            component: () => import("src/feature/Auth/Register.vue")
                         },
                         {
                             path: AUTH_ROUTE.ForgotPassword.slice(1),

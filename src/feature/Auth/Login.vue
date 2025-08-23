@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { IconLock, IconMail } from '@kousum/semi-icons-vue';
-import { Button, Form } from "@kousum/semi-ui-vue";
+import { Form } from "@kousum/semi-ui-vue";
 import { AUTH_ROUTE } from 'src/lib/constants';
 import { h, ref } from 'vue';
 const loading = ref(false);
 // console.log(asdasdas)
 const handleSubmit = (values: any) => {
   console.log('submit', values);
+  loading.value = true;
+  const time = setTimeout(() => {
+    loading.value = false;
+    clearTimeout(time);
+  }, 2000);
 };
 </script>
 <template>
@@ -17,11 +22,11 @@ const handleSubmit = (values: any) => {
     <p class="text-sm text-gray-600">{{ $t('auth:login.subtitle') }}</p>
   </div>
   <div class="flex w-full max-w-sm items-center space-x-2 [&>button]:flex-1">
-    <v-button variant="outline" class="shadow-none w-full py-2 hover:bg-gray-50 bg-transparent"
+    <s-button class="shadow-none w-full py-2 hover:bg-gray-50 bg-transparent" theme="outline"
       :title="$t('auth:login.signInWithGoogle')">
-      <img src="/assets/images/google.svg" alt="Google" class="w-5 h-5" />
+      <img src="/assets/images/google.svg" alt="Google" class="w-5 h-5 mr-2" />
       {{ $t('auth:login.signInWithGoogle') }}
-    </v-button>
+    </s-button>
   </div>
   <div class="relative my-6">
     <div class="absolute inset-0 flex items-center">
@@ -34,28 +39,30 @@ const handleSubmit = (values: any) => {
     </div>
   </div>
 
-  <Form @submit="handleSubmit" class-name="!space-y-4" :label-position="'left'" :label-width="0">
+  <Form :disabled="loading" @submit="handleSubmit" class-name="!space-y-4" :label-position="'left'" :label-width="0">
     <Form.Input
+      size="large"
       noLabel
       field="email"
       type="email"
-      field-class-name="!p-0 border border-gray-200"
+      field-class-name="!p-0"
       :placeholder="$t('auth:login.emailPlaceholder')"
       :prefix="h(IconMail)"
       :rules="[{ required: true, message: $t('app:error.requireFiled') }]"
     />
     <Form.Input
+      size="large"
       noLabel
       mode="password"
-      field-class-name="!p-0 border border-gray-200"
+      field-class-name="!p-0"
       field="password"
       :placeholder="$t('auth:login.passwordPlaceholder')"
       :prefix="h(IconLock)"
       :rules="[{ required: true, message: $t('app:error.requireFiled') }]"
     />
-    <Button class="w-full py-2 font-medium select-none" theme="solid" htmlType="submit" :loading="loading">
+    <s-button class="w-full py-2 font-medium select-none" theme="solid" htmlType="submit" :loading="loading">
       {{ $t('auth:login.signIn') }}
-    </Button>
+    </s-button>
   </Form>
   <div class="mt-6 mb-3 text-center text-sm">
     <router-link :to="AUTH_ROUTE.ForgotPassword" class="text-blue-600 hover:(underline)">
