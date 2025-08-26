@@ -5,10 +5,6 @@ const app = defineComponent({
     name: "App",
     
     // Optionally, you can add a setup function if needed
-    setup() {
-        return () => (
-                <RouterView/>
-        )
-    }
+    render: () => (<RouterView/>)
 });
 export default app;

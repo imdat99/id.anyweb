@@ -214,7 +214,7 @@
     "@babel/helper-skip-transparent-expression-wrappers" "^7.27.1"
     "@babel/plugin-syntax-typescript" "^7.27.1"
 
-"@babel/runtime@^7.17.8", "@babel/runtime@^7.21.0", "@babel/runtime@^7.27.6":
+"@babel/runtime@^7.17.8", "@babel/runtime@^7.21.0", "@babel/runtime@^7.23.2", "@babel/runtime@^7.27.6":
   version "7.28.3"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.28.3.tgz"
   integrity sha512-9uIQ10o0WGdpP6GDhXcdOJPJuDgFtIDtN/9+ArJQ2NAfAmiuhTQdzkaTGR33v43GYS2UrSA0eX2pPPHoFVvpxA==
@@ -600,6 +600,17 @@
     sass "^1.57.1"
     vue "^3.5.13"
 
+"@kousum/semi-icons-lab-vue@^2.78.0":
+  version "2.78.0"
+  resolved "https://registry.yarnpkg.com/@kousum/semi-icons-lab-vue/-/semi-icons-lab-vue-2.78.0.tgz#bcf25ee271ada6f79c8792bf99d5bce187bfec7d"
+  integrity sha512-uEy9bjSPDM1QJeEkhFdqr/LPnMojPAb5fGrs/Lixeo3/Kf+7lhDwp9q12g7G5tD25W0spwZR+IxA58S0XxhRTw==
+  dependencies:
+    "@douyinfe/semi-foundation" "2.78.0"
+    "@douyinfe/semi-theme-default" "2.78.0"
+    classnames "^2.3.2"
+    sass "^1.57.1"
+    vue "^3.5.13"
+
 "@kousum/semi-icons-vue@2.78.0", "@kousum/semi-icons-vue@^2.78.0":
   version "2.78.0"
   resolved "https://registry.npmjs.org/@kousum/semi-icons-vue/-/semi-icons-vue-2.78.0.tgz"
@@ -655,6 +666,13 @@
     unified "^11.0.5"
     utility-types "^3.10.0"
     vue "^3.5.13"
+
+"@kousum/vite-plugin-semi-theme@^2.78.0":
+  version "2.78.0"
+  resolved "https://registry.yarnpkg.com/@kousum/vite-plugin-semi-theme/-/vite-plugin-semi-theme-2.78.0.tgz#8cfdf8321e943f01bc9368c9e5a0d261619c8050"
+  integrity sha512-pFcPkiRzsF2ml3YXJGAdwGKelwfZqc7psg4lNZq6KHWM+Fjti+/IgVhislLkfCWE28/RI+teJD4kgv/jx1u3tw==
+  dependencies:
+    sass "^1.57.1"
 
 "@kousum/vue-draggable@1.0.2":
   version "1.0.2"
@@ -934,6 +952,11 @@
   version "4.47.1"
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.47.1.tgz#e5e0a0bae2c9d4858cc9b8dc508b2e10d7f0df8b"
   integrity sha512-CpKnYa8eHthJa3c+C38v/E+/KZyF1Jdh2Cz3DyKZqEWYgrM1IHFArXNWvBLPQCKUEsAqqKX27tTqVEFbDNUcOA==
+
+"@semi-bot/semi-theme-nky@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@semi-bot/semi-theme-nky/-/semi-theme-nky-1.0.0.tgz#6710bafebdccdcfae93a77f0efa10bc7bca6b91e"
+  integrity sha512-TUE1TcCWEJrtIbOSqpU2RaAtb9vkx+gE+Czqrm9lgOhLwK+DsovBdPVNrTN9zHxvHxg6vzEyRUlLpYxxkBc2aw==
 
 "@types/debug@^4.0.0":
   version "4.1.12"
@@ -2024,6 +2047,13 @@ he@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/he/-/he-1.2.0.tgz"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
+
+i18next-browser-languagedetector@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-8.2.0.tgz#c3ca311e249d2f7d8bb9b3b13ac9af380a3b15b0"
+  integrity sha512-P+3zEKLnOF0qmiesW383vsLdtQVyKtCNA9cjSoKCppTKPQVfKd2W8hbVo5ZhNJKDqeM7BOcvNoKJOjpHh4Js9g==
+  dependencies:
+    "@babel/runtime" "^7.23.2"
 
 i18next-http-backend@^3.0.2:
   version "3.0.2"

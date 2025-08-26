@@ -22,9 +22,9 @@ import { h, resolveComponent } from 'vue';
                 :placeholder="$t('auth:login.emailPlaceholder')" :prefix="h(IconMail)"
                 :rules="[{ required: true, message: $t('app:error.invalidData') }]" />
             <div className="flex flex-col gap-1">
-                <Form.Input size="large" noLabel field="email"  field-class-name="!p-0"
+                <Form.Input size="large" noLabel field="otpCode" field-class-name="!p-0"
                     :placeholder="$t('auth:register.codePlaceholder')" :prefix="h(IconShield)"
-                    :suffix="h(resolveComponent('s-button'), { theme: 'solid', type: 'secondary', class: 'mr-1' }, $t('auth:register.sendCode'))"
+                    :suffix="h(resolveComponent('s-button'), { theme: 'solid', class: 'mr-1' }, $t('auth:register.sendCode'))"
                     :rules="[{ required: true, message: $t('app:error.invalidData') }]" />
                 <div className="text-gray-500 text-sm">
                     {{ $t('auth:register.emailTip') }}
@@ -40,7 +40,7 @@ import { h, resolveComponent } from 'vue';
                 :placeholder="$t('auth:login.passwordPlaceholder')" :prefix="h(IconLock)"
                 :rules="[{ required: true, message: $t('app:error.invalidData') }]" />
         </div>
-        <s-button Type="submit" theme="solid" type="secondary" className="w-full py-2 font-medium">
+        <s-button Type="submit" theme="solid" className="w-full py-2 font-medium">
             {{ $t('auth:register.signUp') }}
         </s-button>
     </form>

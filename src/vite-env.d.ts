@@ -6,3 +6,10 @@ declare module '*.vue' {
   const component: DefineComponent<Props, {}, Emits>;
   export default component;
 }
+declare global {
+    interface Window {
+        APP_LANGUGE_SUPPORT: string[];
+        APP_DEFAULT_LANGUAGE: string;
+    }
+}
+export {};

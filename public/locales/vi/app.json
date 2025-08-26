@@ -42,5 +42,12 @@
   },
   "loading": {
     "message": "Đang tải, vui lòng đợi..."
+  },
+  "menu": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "services": "Dịch vụ",
+    "contact": "Liên hệ",
+    "blog": "Blog"
   }
 }

@@ -42,5 +42,12 @@
   },
   "loading": {
     "message": "Loading, please wait..."
+  },
+  "menu": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact",
+    "blog": "Blog"
   }
 }

@@ -10,8 +10,7 @@ export function withLocaleProvider(WrappedComponent: any) {
     setup(props, { attrs, slots }) {
       const { i18next } = useTranslation();
       const locale = ref<Locale>();
-
-      onBeforeMount(async () => {
+      const loadLocale = async () => {
         const localeData = i18next.store.data[i18next.language]?.common as Locale;
         const dateLang = await Promise.all([
           import('date-fns/locale/en-US'),
@@ -22,8 +21,12 @@ export function withLocaleProvider(WrappedComponent: any) {
                  modules[0].default;
         });
         locale.value = { ...localeData, dateFnsLocale: dateLang as any };
+      }
+      onBeforeMount(loadLocale);
+      i18next.on('languageChanged', () => {
+        console.log('Language changed, reloading locale...');
+        loadLocale();
       });
-
       return () =>
         h(LocaleProvider, { locale: locale.value }, {
           default: () => h(WrappedComponent, { ...attrs, ...props }, slots)
