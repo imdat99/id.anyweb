@@ -39,6 +39,11 @@ const routes: RouteData[] = [
                             name: "Home",
                             component: () => import("src/feature/Home/Home.vue"),
                         },
+                        {
+                            path: "security",
+                            name: "Security",
+                            component: () => import("src/feature/Security/Security.vue"),
+                        },
                     ]
                 },
                 {

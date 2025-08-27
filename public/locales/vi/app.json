@@ -21,7 +21,8 @@
       "vi": "Tiếng Việt",
       "en": "Tiếng Anh"
     },
-    "theme": "Chủ đề"
+    "theme": "Chủ đề",
+    "name": "Tài khoản"
   },
   "policy": {
     "title": "Chính sách bảo mật",
@@ -44,10 +45,20 @@
     "message": "Đang tải, vui lòng đợi..."
   },
   "menu": {
-    "home": "Trang chủ",
+    "home": "Tổng quan",
     "about": "Giới thiệu",
     "services": "Dịch vụ",
     "contact": "Liên hệ",
-    "blog": "Blog"
+    "blog": "Blog",
+    "security": "Bảo mật",
+    "payment": "Thanh toán",
+    "personalInfo": "Thông tin cá nhân"
+  },
+  "security": {
+    "title": "Bảo mật",
+    "description": "Quản lý cài đặt bảo mật của bạn để bảo vệ tài khoản.",
+    "changePassword": "Đổi mật khẩu",
+    "twoFactorAuth": "Xác thực hai yếu tố",
+    "loginAlerts": "Cảnh báo đăng nhập"
   }
 }

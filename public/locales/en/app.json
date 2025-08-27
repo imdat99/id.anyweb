@@ -21,7 +21,8 @@
       "vi": "Vietnamese",
       "en": "English"
     },
-    "theme": "Theme"
+    "theme": "Theme",
+    "name": "Account"
   },
   "policy": {
     "title": "Privacy Policy",
@@ -44,10 +45,13 @@
     "message": "Loading, please wait..."
   },
   "menu": {
-    "home": "Home",
+    "home": "overview",
     "about": "About",
     "services": "Services",
     "contact": "Contact",
-    "blog": "Blog"
+    "blog": "Blog",
+    "security": "Security",
+    "payment": "Payment",
+    "personalInfo": "Personal Info"
   }
 }

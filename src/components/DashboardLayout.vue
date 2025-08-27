@@ -1,59 +1,41 @@
 <template>
-  <Layout className="min-h-svh h-svh bg-[#F8FAFD]">
-      <div mode="horizontal" :defaultSelectedKeys="['Home']" class="!border-0 flex justify-between px-3 pt-2">
-        <NavHeader>
-          <!-- h(Button, { icon: h(IconSidebar, { size: 'large' }), class: 'cursor-pointer', theme: 'borderless', type: 'tertiary', onClick: () => (collapsed = !collapsed) })) -->
-           <Button theme="borderless" size="large" className="!rounded-full" :icon="h(IconSideSheet, { size: 'extra-large' })"
-            class="cursor-pointer mr-3" type="tertiary" @click="collapsed = !collapsed" />
-          <img src="/assets/images/logo.svg" alt="Logo" class="h-8 w-8 bg-[--semi-color-bg-0] rounded-md animate-bounce-in duration-500 mr-2" />
-          <!-- <Breadcrumb className="[&_.semi-typography]:text-lg" :routes="[{ name: 'Trang chủ', path: '/' }]" /> -->
-          <span style="font-size: 18px; font-weight: 600; color: var(--semi-color-text-0)">仪表盘</span>
-        </NavHeader>
-        <div>
-          <Button theme="borderless" :icon="h(IconBell, { size: 'large' })"
-            style="color: var(--semi-color-text-2); margin-right: 12px" />
-          <Button theme="borderless" :icon="h(IconHelpCircle, { size: 'large' })"
-            style="color: var(--semi-color-text-2); margin-right: 12px" />
-          <Avatar color="orange" size="small">YJ</Avatar>
-        </div>
+  <Layout className="h-svh min-h-svh dark:bg-[#181818] dark:text-[#E5E5E5]">
+    <div mode="horizontal" :defaultSelectedKeys="['Home']" class="!border-0 flex justify-between px-3 pt-2">
+      <NavHeader>
+      
+        <img src="/assets/images/logo.svg" alt="Logo"
+          class="h-8 w-8 bg-[--semi-color-bg-0] rounded-md animate-bounce-in duration-500 mr-2" />
+        <!-- <Breadcrumb className="[&_.semi-typography]:text-lg" :routes="[{ name: 'Trang chủ', path: '/' }]" /> -->
+        <span class="text-2xl">{{ $t("app:app.name") }}</span>
+      </NavHeader>
+      <div class="flex items-center space-x-2">
+        <ThemeBtn class=""/>
+        <Button theme="borderless" :icon="h(IconBell, { size: 'large' })"
+          style="color: var(--semi-color-text-2); margin-right: 12px" />
+        <Button theme="borderless" :icon="h(IconHelpCircle, { size: 'large' })"
+          style="color: var(--semi-color-text-2); margin-right: 12px" />
+        <Avatar color="orange" size="small">YJ</Avatar>
       </div>
+    </div>
     <Layout>
       <LayoutSider>
-        <Nav 
-          className="h-full !border-0 ![&_.semi-navigation-item]:font-500 ![&_.semi-navigation-item-selected]:font-600"
-          :defaultSelectedKeys="selecTedkeys"
-          :isCollapsed="collapsed"
-          :onSelect="data => {
-            selecTedkeys = data.selectedKeys;
-          }"
-          :onClick="data => console.log('trigger onClick: ', data)"
+        <Nav
+          className="h-full !border-0 ![&_.semi-navigation-item]:font-500 ![&_.semi-navigation-item-selected]:font-600 !bg-transparent"
+          :selectedKeys="selecTedkeys" :isCollapsed="collapsed" :onSelect="onSelect"
+          :footer="h('div', { class: 'w-full' }, h(Button, { theme: 'borderless', onClick: () => collapsed =! collapsed, icon: h(IconSideSheet, { size: 'large' }) }))"
           :items="[
-            { itemKey: 'Home', text: $t('app:menu.home'), icon: h(IconHome, { size: 'large' }) },
-            { itemKey: 'Histogram', text: $t('app:menu.services'), icon: h(IconHistogram, { size: 'large' }) },
-            { itemKey: 'Live', text: '测试功能', icon: h(IconLive, { size: 'large' }) },
-            { itemKey: 'Setting', text: '设置', icon: h(IconSetting, { size: 'large' }), items: [
-                { itemKey: 'Profile', text: '个人资料' },
-                { itemKey: 'Team', text: '团队管理' },
-                { itemKey: 'Billing', text: '账单信息' },
-                { itemKey: 'Integrations', text: '集成' },
-                { itemKey: 'Security', text: '安全' },
-                { itemKey: 'Notifications', text: '通知' },
-            ] },
-          ]"
-          >
-          <!-- <NavItem itemKey="Home" :text="$t('app:menu.home')" :icon="h(IconIntro, { size: 'large' })" /> -->
-          <!-- <NavItem itemKey="Histogram" :text="$t('app:menu.services')" :icon="h(IconLayout, { size: 'large' })" /> -->
-          <!-- <NavItem itemKey="Live" text="测试功能" :icon="h(IconLive, { size: 'large' })" /> -->
-          <!-- <NavItem itemKey="Setting" text="设置" :icon="h(IconSetting, { size: 'large' })" /> -->
+            { itemKey: 'Home', text: $t('app:menu.home'), icon: h(IconUserCircle, { size: 'large' }) },
+            { itemKey: 'personalInfo', text: $t('app:menu.personalInfo'), icon: h(IconIdCard, { size: 'large' }) },
+            { itemKey: 'security', text: $t('app:menu.security'), icon: h(IconLock, { size: 'large' }) },
+            { itemKey: 'payment', text: $t('app:menu.payment'), icon: h(IconCreditCard, { size: 'large' })},
+          ]">
         </Nav>
       </LayoutSider>
-      <Layout>
-        <LayoutContent class="flex flex-col gap-4 h-full py-2 pr-2">
-          <div class="flex-1 max-h-full overflow-auto rounded-lg p-4 bg-white">
+        <LayoutContent class="w-full flex-col h-full py-2 pr-2 max-h-[calc(100svh-40px)]">
+          <div class="h-full overflow-auto rounded-lg p-4 bg-gray-50 dark:bg-[#242424]">
             <router-view />
           </div>
         </LayoutContent>
-      </Layout>
     </Layout>
     <!-- <LayoutFooter
       style="
@@ -80,11 +62,16 @@
 import { IconSideSheet } from '@kousum/semi-icons-lab-vue';
 import {
   IconBell,
+  IconCreditCard,
   IconHelpCircle,
   IconHistogram,
   IconHome,
+  IconIdCard,
   IconLive,
-  IconSetting
+  IconLock,
+  IconSafe,
+  IconSetting,
+  IconUserCircle
 } from '@kousum/semi-icons-vue';
 import {
   Avatar,
@@ -96,6 +83,10 @@ import {
   NavHeader
 } from '@kousum/semi-ui-vue';
 import { h, reactive, ref } from 'vue';
+import ThemeBtn from './ThemeBtn';
 const collapsed = ref(true);
-const selecTedkeys = reactive<Array<string|number>>(['Home']);
+const selecTedkeys = ref<Array<string>>(['Home']);
+const onSelect = (data: { selectedKeys: Array<string | number> }) => {
+  selecTedkeys.value = data.selectedKeys.map((item) => item.toString());
+};
 </script>

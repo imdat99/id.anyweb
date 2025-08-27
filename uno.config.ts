@@ -9,7 +9,9 @@ import {
 export default defineConfig({
     // ...UnoCSS options
     presets: [
-        presetWind4(),
+        presetWind4({
+            dark: 'class',
+        }),
         presetWebFonts({
             provider: 'google',
             fonts: {
@@ -94,7 +96,6 @@ export default defineConfig({
         }
         html, body {
             --semi-border-radius-small: 6px!important;
-            --semi-color-nav-bg: #F8FAFD!important;
         }
       `;
       },

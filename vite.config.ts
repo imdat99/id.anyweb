@@ -19,8 +19,8 @@ export default defineConfig({
     css: {
         preprocessorOptions: {
             scss: {
-                // Đây chính là chỗ disable warning từ dependencies
                 quietDeps: true,
+                additionalData: `@use "scss:math";@import "./src/styles/variables.scss";`,
             },
         },
     },
