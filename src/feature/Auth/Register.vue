@@ -3,6 +3,7 @@ import { IconLock, IconMail, IconShield, IconUserCircle } from '@kousum/semi-ico
 import { Form } from '@kousum/semi-ui-vue';
 import { AUTH_ROUTE } from 'src/lib/constants';
 import { h, resolveComponent } from 'vue';
+import IdpLoginBtn from './IdpLoginBtn.vue';
 
 </script>
 
@@ -13,6 +14,7 @@ import { h, resolveComponent } from 'vue';
         </h2>
         <p className="text-sm text-gray-600">{{ $t('auth:register.subtitle') }}</p>
     </div>
+    <IdpLoginBtn/>
     <Form className="mt-6 space-y-4">
         <div className="gap-4 flex flex-col">
             <p className="text-black font-bold">

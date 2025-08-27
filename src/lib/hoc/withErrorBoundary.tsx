@@ -1,5 +1,4 @@
 import { defineComponent, onErrorCaptured, ref } from "vue";
-import { RouterLink } from "vue-router";
 
 export function withErrorBoundary(WrappedComponent: any) {
     return defineComponent({
@@ -7,22 +6,18 @@ export function withErrorBoundary(WrappedComponent: any) {
         render() {
             if (this.hasError) {
                 return (
-                    <>
-                        <div v-else class="flex flex-col items-center justify-center h-screen text-center">
-                            <h1 class="text-3xl font-bold text-red-600 mb-4">Có lỗi xảy ra!</h1>
-                            <button onClick={() => this.reset()}
-                                class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
-                            >
-                                Thử lại
-                            </button>
-                            <a
-                                href="/"
-                                class="mt-4 px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
-                            >
-                                Về trang chủ
-                            </a>
+                    <div class="flex items-center justify-center min-h-screen-sm">
+                        <div class="p-8 space-y-lg max-w-lg w-full">
+                            <img src="/assets/images/google.svg" alt="Xemdi Logo" class="h-10" />
+                            <p>
+                                <b>500.&nbsp;</b>
+                                <ins class="text-gray-500 decoration-none">Đã xảy ra lỗi.</ins>
+                            </p>
+                            <div class="font-thin">
+                                <p>Máy chủ đang gặp sự cố tạm thời và không thể xử lý yêu cầu của bạn. Vui lòng <a class="underline text-primary" href="/">thử lại</a> sau vài phút.</p>
+                            </div>
                         </div>
-                    </>
+                    </div>
                 );
             }
             return <WrappedComponent {...this.$props} v-slots={this.$slots} />;
