@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IconMail, IconSend } from "@kousum/semi-icons-vue";
-import { Form } from "@kousum/semi-ui-vue";
+import { Form } from "@lethdat/semi-ui-vue";
 import { AUTH_ROUTE } from "src/lib/constants";
 import { h, ref } from "vue";
 

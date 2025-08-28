@@ -1,6 +1,6 @@
 import { defineComponent, h, ref, onBeforeMount } from "vue";
-import { LocaleProvider } from "@kousum/semi-ui-vue";
-import type { Locale } from "@kousum/semi-ui-vue/dist/locale/interface";
+import { LocaleProvider } from "@lethdat/semi-ui-vue";
+import type { Locale } from "@lethdat/semi-ui-vue/dist/locale/interface";
 import { useTranslation } from "i18next-vue";
 
 // HOC function

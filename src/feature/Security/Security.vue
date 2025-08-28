@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IconClose, IconTick } from '@kousum/semi-icons-vue';
-import { Pagination, SplitButtonGroup, Switch } from '@kousum/semi-ui-vue';
+import { Pagination, SplitButtonGroup, Switch } from '@lethdat/semi-ui-vue';
 
 </script>
 
@@ -499,7 +499,7 @@ import { Pagination, SplitButtonGroup, Switch } from '@kousum/semi-ui-vue';
                 </div>
 
                 <!-- Khuyến nghị bảo mật -->
-                <div class="bg-background dark:bg-[#181818] rounded-lg">
+                <div class="bg-white dark:bg-[#181818] rounded-lg">
                     <div class="px-4 py-5 sm:p-6">
                         <h3 class="text-lg leading-6 font-medium ">Khuyến nghị bảo mật</h3>
                         <div class="mt-4 space-y-4">

@@ -5,7 +5,7 @@ export const appComponents = {
     } {
         // Register components globally
         app.component("v-button", defineAsyncComponent(() => import("./ui/Button.vue")));
-        app.component("s-button", defineAsyncComponent(() => import("@kousum/semi-ui-vue/dist/button")));
+        app.component("s-button", defineAsyncComponent(() => import("@lethdat/semi-ui-vue/dist/button")));
         app.component("v-input", defineAsyncComponent(() => import("./ui/Input")));
         // Register external components
         // app.component("AwesomeButton", () => import("awesome-ui/AwesomeButton.vue"));

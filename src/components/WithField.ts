@@ -1,5 +1,5 @@
-import { withField } from "@kousum/semi-ui-vue";
-import type { WithFieldOption } from "@kousum/semi-ui-vue/dist/form";
+import { withField } from "@lethdat/semi-ui-vue";
+import type { WithFieldOption } from "@lethdat/semi-ui-vue/dist/form";
 import { defineComponent, getCurrentInstance, h, type DefineSetupFnComponent, type Component } from "vue";
 
 export default defineComponent({

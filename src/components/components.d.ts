@@ -1,5 +1,5 @@
 import type { DefineComponent } from "vue";
-import type { Button } from "@kousum/semi-ui-vue";
+import type { Button } from "@lethdat/semi-ui-vue";
 declare module "@vue/runtime-core" {
   export interface GlobalComponents {
     // components trong src

@@ -1,5 +1,5 @@
-import { Input } from "@kousum/semi-ui-vue";
-import { propTypes } from "@kousum/semi-ui-vue/dist/input";
+import { Input } from "@lethdat/semi-ui-vue";
+import { propTypes } from "@lethdat/semi-ui-vue/dist/input";
 import { useVModel } from "@vueuse/core"
 import { cn, omit } from "src/lib/utils";
 import { defineComponent, h, ref } from "vue";

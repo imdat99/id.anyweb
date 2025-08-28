@@ -45,7 +45,7 @@
     "message": "Loading, please wait..."
   },
   "menu": {
-    "home": "overview",
+    "overview": "overview",
     "about": "About",
     "services": "Services",
     "contact": "Contact",

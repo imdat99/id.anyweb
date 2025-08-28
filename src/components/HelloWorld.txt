@@ -1,4 +1,4 @@
-import { DatePicker } from '@kousum/semi-ui-vue';
+import { DatePicker } from '@lethdat/semi-ui-vue';
 import { defineComponent, ref } from 'vue';
 interface Props {
   msg: string;

@@ -1,5 +1,5 @@
 import I18NextVue from 'i18next-vue'
-// import vi_VN from '@kousum/semi-ui-vue/dist/locale/source/vi_VN'
+// import vi_VN from '@lethdat/semi-ui-vue/dist/locale/source/vi_VN'
 import { createHead } from '@unhead/vue/client'
 import 'uno.css'
 import { createApp } from 'vue'

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IconLock, IconMail, IconShield, IconUserCircle } from '@kousum/semi-icons-vue';
-import { Form } from '@kousum/semi-ui-vue';
+import { Form } from '@lethdat/semi-ui-vue';
 import { AUTH_ROUTE } from 'src/lib/constants';
 import { h, resolveComponent } from 'vue';
 import IdpLoginBtn from './IdpLoginBtn.vue';
@@ -26,7 +26,7 @@ import IdpLoginBtn from './IdpLoginBtn.vue';
             <div className="flex flex-col gap-1">
                 <Form.Input size="large" noLabel field="otpCode" field-class-name="!p-0"
                     :placeholder="$t('auth:register.codePlaceholder')" :prefix="h(IconShield)"
-                    :suffix="h(resolveComponent('s-button'), { theme: 'solid', class: 'mr-1' }, $t('auth:register.sendCode'))"
+                    :suffix="h(resolveComponent('s-button'), { theme: 'solid', class: 'mr-1' }, { default: () => $t('auth:register.sendCode') })"
                     :rules="[{ required: true, message: $t('app:error.invalidData') }]" />
                 <div className="text-gray-500 text-sm">
                     {{ $t('auth:register.emailTip') }}

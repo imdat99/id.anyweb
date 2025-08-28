@@ -1,5 +1,5 @@
 import { IconMoon } from "@kousum/semi-icons-vue";
-import { Button } from "@kousum/semi-ui-vue";
+import { Button } from "@lethdat/semi-ui-vue";
 import { defineComponent } from "vue";
 
 {/* <script setup lang="ts">

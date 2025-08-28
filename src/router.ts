@@ -23,7 +23,8 @@ const routes: RouteData[] = [
                 {
                     path: "",
                     name: "Dashboard",
-                    component: () => import("src/components/DashboardLayout.vue"),
+                    redirect: { name: "overview" },
+                    component: () => import("src/components/DashboardLayout/DashboardLayout.vue"),
                     meta: {
                         title: "Dashboard - AnyWeb",
                         meta: [
@@ -35,13 +36,13 @@ const routes: RouteData[] = [
                     },
                     children: [
                         {
-                            path: "",
-                            name: "Home",
+                            path: "overview",
+                            name: "overview",
                             component: () => import("src/feature/Home/Home.vue"),
                         },
                         {
                             path: "security",
-                            name: "Security",
+                            name: "security",
                             component: () => import("src/feature/Security/Security.vue"),
                         },
                     ]
