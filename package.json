@@ -12,7 +12,7 @@
   "dependencies": {
     "@kousum/semi-icons-lab-vue": "^2.78.0",
     "@kousum/semi-icons-vue": "^2.78.0",
-    "@lethdat/semi-ui-vue": "^0.0.1",
+    "@lethdat/semi-ui-vue": "^0.0.3",
     "@unhead/vue": "^2.0.14",
     "@vueuse/core": "^13.7.0",
     "clsx": "^2.1.1",

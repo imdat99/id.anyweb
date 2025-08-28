@@ -16,6 +16,14 @@ export default defineConfig({
             `,
         }),
     ],
+    build: {
+        rollupOptions: {
+            output: {
+                preserveModules: true,
+            }
+        },
+        minify: false
+    },
     css: {
         preprocessorOptions: {
             scss: {

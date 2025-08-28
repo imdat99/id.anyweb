@@ -21,7 +21,10 @@
       <LayoutSider>
         <Nav
           className="h-full !border-0 ![&_.semi-navigation-item]:font-500 ![&_.semi-navigation-item-selected]:font-600 !bg-transparent [&_li]:!mb-3"
-          :selectedKeys="[String($router.currentRoute.value.name)]" :isCollapsed="collapsed" :renderWrapper="({
+          :footer="{
+            collapseButton: true
+          }"
+          :selectedKeys="[String($router.currentRoute.value.name)]" :renderWrapper="({
             itemElement,
             props
           }) => (props as NavItemProps)?.link ? h(RouterLink, { to: String(props.itemKey) }, () => itemElement) : itemElement"
@@ -82,9 +85,9 @@ import ThemeBtn from '../ThemeBtn';
 const collapsed = ref(true);
 const { t } = useTranslation();
 const navItems = ref<NavItems>([
-  { itemKey: 'overview', link: 'overview', text: t('app:menu.overview'), icon: h(IconTemplate, { size: 'large' }) },
-  { itemKey: 'personalInfo', text: t('app:menu.personalInfo'), icon: h(IconUserCircle, { size: 'large' }) },
-  { itemKey: 'security', link: 'security', text: t('app:menu.security'), icon: h(IconLock, { size: 'large' }) },
-  { itemKey: 'payment', link: 'payment', text: t('app:menu.payment'), icon: h(IconCreditCard, { size: 'large' }) },
+  { itemKey: 'overview', link: 'overview', text: t('app:menu.overview'), icon: h(IconTemplate) },
+  { itemKey: 'personalInfo', text: t('app:menu.personalInfo'), icon: h(IconUserCircle) },
+  { itemKey: 'security', link: 'security', text: t('app:menu.security'), icon: h(IconLock) },
+  { itemKey: 'payment', link: 'payment', text: t('app:menu.payment'), icon: h(IconCreditCard) },
 ]);
 </script>

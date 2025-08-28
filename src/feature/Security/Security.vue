@@ -1,11 +1,32 @@
 <script setup lang="ts">
-import { IconClose, IconTick } from '@kousum/semi-icons-vue';
-import { Pagination, SplitButtonGroup, Switch } from '@lethdat/semi-ui-vue';
+import { IconClose, IconTick, IconTiktokLogo } from '@kousum/semi-icons-vue';
+import { Button, Form, Modal, Pagination, Popconfirm, SplitButtonGroup, Switch } from '@lethdat/semi-ui-vue';
+import SessionTable from './SessionTable';
+import { h, ref } from 'vue';
+import confirm from './confirm';
+const visible = ref(false)
 
+const showDialog = () => {
+    visible.value = true
+}
+
+const handleOk = () => {
+    visible.value = false
+    console.log('Ok button clicked')
+}
+
+const handleCancel = () => {
+    visible.value = false
+    console.log('Cancel button clicked')
+}
+
+const handleAfterClose = () => {
+    console.log('After Close callback executed')
+}
 </script>
 
 <template>
-     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="mb-8">
             <h1 class="text-2xl font-bold ">Cài đặt bảo mật</h1>
             <p class="mt-1 text-sm text-gray-500">Quản lý cài đặt bảo mật và quyền riêng tư của tài khoản</p>
@@ -14,35 +35,7 @@ import { Pagination, SplitButtonGroup, Switch } from '@lethdat/semi-ui-vue';
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Bảng điều khiển bảo mật -->
             <div class="md:col-span-2 space-y-6">
-                <!-- Mật khẩu -->
-                <div class="bg-white rounded-lg dark:bg-[#181818] security-card">
-                    <div class="px-4 py-5 sm:p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="text-lg leading-6 font-medium ">Mật khẩu</h3>
-                                <p class="mt-1 text-sm text-gray-500">Thay đổi mật khẩu đăng nhập của bạn</p>
-                            </div>
-                            <div class="ml-4 flex-shrink-0">
-                                <s-button>
-                                    Thay đổi
-                                </s-button>
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
-                                        <IconTick class="text-green-600" size="large" />
-                                    </div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium ">Mật khẩu mạnh</p>
-                                    <p class="text-sm text-gray-500">Đã cập nhật 3 tháng trước</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
 
                 <!-- Xác thực hai yếu tố -->
                 <div class="bg-white rounded-lg security-card dark:bg-[#181818]">
@@ -72,24 +65,48 @@ import { Pagination, SplitButtonGroup, Switch } from '@lethdat/semi-ui-vue';
                     </div>
                 </div>
 
-                <!-- Quản lý thiết bị -->
+                <!-- Lịch sử đăng nhập -->
                 <div class="bg-white rounded-lg security-card dark:bg-[#181818]">
                     <div class="px-4 py-5 sm:p-6">
                         <div class="flex items-center justify-between">
                             <div>
-                                <h3 class="text-lg leading-6 font-medium ">Quản lý thiết bị</h3>
-                                <p class="mt-1 text-sm text-gray-500">Xem và quản lý các thiết bị đã đăng nhập</p>
+                                <h3 class="text-lg leading-6 font-medium ">Lịch sử đăng nhập</h3>
+                                <p class="mt-1 text-sm text-gray-500">Xem hoạt động đăng nhập gần đây</p>
                             </div>
                             <div class="ml-4 flex-shrink-0">
                                 <SplitButtonGroup>
-                                    <s-button type="danger"> 
-                                        Đăng xuất tất cả thiết bị
-                                    </s-button>
+                                    <Popconfirm title="Bạn có chắc chắn muốn thực hiện hành động này không?"
+                                        content="Hành động này không thể hoàn tác" :onConfirm="console.log"
+                                        :onCancel="console.log" position="topRight">
+                                        <s-button type="danger">
+                                            Đăng xuất tất cả thiết bị
+                                        </s-button>
+                                    </Popconfirm>
                                     <s-button>
-                                    <i class="fas fa-sync-alt mr-1"></i> Làm mới
-                                </s-button>
-                                </SplitButtonGroup> 
+                                        <i class="fas fa-sync-alt mr-1"></i> Làm mới
+                                    </s-button>
+                                </SplitButtonGroup>
                             </div>
+                        </div>
+
+                        <!-- Tabs -->
+                        <div class="mt-4 border-b border-gray-200 dark:border-[#242424] ">
+                            <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                                <button class="tab-btn tab-active py-2 px-1 border-b-2 font-medium text-sm"
+                                    data-tab="all">
+                                    Tất cả
+                                </button>
+                                <button
+                                    class="tab-btn py-2 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                                    data-tab="successful">
+                                    Thành công
+                                </button>
+                                <button
+                                    class="tab-btn py-2 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                                    data-tab="failed">
+                                    Thất bại
+                                </button>
+                            </nav>
                         </div>
                         <div class="mt-4">
                             <div class="flow-root">
@@ -100,7 +117,7 @@ import { Pagination, SplitButtonGroup, Switch } from '@lethdat/semi-ui-vue';
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0">
                                                     <div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                                                        <i class="fas fa-laptop text-blue-600"></i>
+                                                        <IconTiktokLogo class="fas fa-laptop text-blue-600" size="large"/>
                                                     </div>
                                                 </div>
                                                 <div class="ml-4">
@@ -173,393 +190,179 @@ import { Pagination, SplitButtonGroup, Switch } from '@lethdat/semi-ui-vue';
                         </div>
                     </div>
                 </div>
-
-                <!-- Lịch sử đăng nhập -->
-                <div class="bg-white rounded-lg security-card dark:bg-[#181818]">
-                    <div class="px-4 py-5 sm:p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="text-lg leading-6 font-medium ">Lịch sử đăng nhập</h3>
-                                <p class="mt-1 text-sm text-gray-500">Xem hoạt động đăng nhập gần đây</p>
-                            </div>
-                            <div class="ml-4 flex-shrink-0">
-                                <div class="flex space-x-2">
-                                    <button class="text-sm text-gray-500 hover:text-gray-700 font-medium">
-                                        <i class="fas fa-filter mr-1"></i> Lọc
-                                    </button>
-                                    <button class="text-sm text-gray-500 hover:text-gray-700 font-medium">
-                                        <i class="fas fa-download mr-1"></i> Tải xuống
-                                    </button>
+                <!-- Liên hệ hỗ trợ -->
+                    <div class="bg-white rounded-lg dark:bg-[#181818]">
+                        <div class="px-4 py-5 sm:p-6">
+                            <h3 class="text-lg leading-6 font-medium ">Cần hỗ trợ?</h3>
+                            <div class="mt-4">
+                                <p class="text-sm text-gray-500">Nếu bạn nghi ngờ tài khoản của mình bị xâm phạm hoặc có
+                                    câu hỏi về bảo mật, hãy liên hệ với chúng tôi.</p>
+                                <div class="mt-4 space-y-3">
+                                    <a href="#"
+                                        class="flex items-center text-sm font-medium text-blue-600 hover:text-blue-500">
+                                        <i class="fas fa-envelope mr-2"></i>
+                                        security@securesso.vn
+                                    </a>
+                                    <a href="#"
+                                        class="flex items-center text-sm font-medium text-blue-600 hover:text-blue-500">
+                                        <i class="fas fa-phone-alt mr-2"></i>
+                                        1900 1234
+                                    </a>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Tabs -->
-                        <div class="mt-4 border-b border-gray-200 dark:border-[#242424] ">
-                            <nav class="-mb-px flex space-x-8" aria-label="Tabs">
-                                <button class="tab-btn tab-active py-2 px-1 border-b-2 font-medium text-sm" data-tab="all">
-                                    Tất cả
-                                </button>
-                                <button class="tab-btn py-2 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="successful">
-                                    Thành công
-                                </button>
-                                <button class="tab-btn py-2 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="failed">
-                                    Thất bại
-                                </button>
-                            </nav>
-                        </div>
-                        
-                        <!-- Nội dung tab -->
-                        <div class="mt-4">
-                            <div id="all-tab" class="tab-content">
-                                <ul class="divide-y divide-[#333]" id="loginHistoryList">
-                                    <!-- Đăng nhập thành công -->
-                                    <li class="login-item py-3 px-2 rounded cursor-pointer">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <div class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">
-                                                    <i class="fas fa-check text-green-600 text-sm"></i>
-                                                </div>
-                                            </div>
-                                            <div class="ml-3 flex-1">
-                                                <p class="text-sm font-medium ">Windows PC</p>
-                                                <p class="text-sm text-gray-500">Hà Nội, Việt Nam • Hôm nay, 09:15</p>
-                                            </div>
-                                            <div class="ml-4">
-                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                    Thành công
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    
-                                    <!-- Đăng nhập thất bại -->
-                                    <li class="login-item py-3 px-2 rounded cursor-pointer">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <div class="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center">
-                                                    <i class="fas fa-times text-red-600 text-sm"></i>
-                                                </div>
-                                            </div>
-                                            <div class="ml-3 flex-1">
-                                                <p class="text-sm font-medium ">Thiết bị không xác định</p>
-                                                <p class="text-sm text-gray-500">Bắc Ninh, Việt Nam • Hôm nay, 07:42</p>
-                                                <p class="text-xs text-red-500">Lý do: Sai mật khẩu</p>
-                                            </div>
-                                            <div class="ml-4">
-                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                    Thất bại
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    
-                                    <!-- Đăng nhập thành công -->
-                                    <li class="login-item py-3 px-2 rounded cursor-pointer">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <div class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">
-                                                    <i class="fas fa-check text-green-600 text-sm"></i>
-                                                </div>
-                                            </div>
-                                            <div class="ml-3 flex-1">
-                                                <p class="text-sm font-medium ">iPhone 13 Pro</p>
-                                                <p class="text-sm text-gray-500">Đà Nẵng, Việt Nam • Hôm qua, 18:30</p>
-                                            </div>
-                                            <div class="ml-4">
-                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                    Thành công
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    
-                                    <!-- Đăng nhập thành công -->
-                                    <li class="login-item py-3 px-2 rounded cursor-pointer">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <div class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">
-                                                    <i class="fas fa-check text-green-600 text-sm"></i>
-                                                </div>
-                                            </div>
-                                            <div class="ml-3 flex-1">
-                                                <p class="text-sm font-medium ">iPad Pro</p>
-                                                <p class="text-sm text-gray-500">TP. Hồ Chí Minh, Việt Nam • 3 ngày trước, 14:20</p>
-                                            </div>
-                                            <div class="ml-4">
-                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                    Thành công
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    
-                                    <!-- Đăng nhập thất bại -->
-                                    <li class="login-item py-3 px-2 rounded cursor-pointer">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <div class="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center">
-                                                    <i class="fas fa-times text-red-600 text-sm"></i>
-                                                </div>
-                                            </div>
-                                            <div class="ml-3 flex-1">
-                                                <p class="text-sm font-medium ">Thiết bị không xác định</p>
-                                                <p class="text-sm text-gray-500">Hà Nội, Việt Nam • 4 ngày trước, 22:15</p>
-                                                <p class="text-xs text-red-500">Lý do: Tài khoản bị khóa tạm thời</p>
-                                            </div>
-                                            <div class="ml-4">
-                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                    Thất bại
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                
-                                <!-- Phân trang -->
-                                <div class="mt-6 flex items-center justify-between">
-                                    <div class="flex-1 flex justify-between sm:hidden">
-                                        <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                                            Trước
-                                        </button>
-                                        <button class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                                            Sau
-                                        </button>
-                                    </div>
-                                    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                                        <div>
-                                            <p class="text-sm text-gray-700">
-                                                Hiển thị <span class="font-medium">1</span> đến <span class="font-medium">5</span> trong số <span class="font-medium">23</span> kết quả
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <Pagination :total="80" showSizeChanger :style="{ marginBottom: '12px' }"></Pagination>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div id="successful-tab" class="tab-content hidden">
-                                <ul class="divide-y divide-gray-200">
-                                    <li class="login-item py-3 px-2 rounded cursor-pointer">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <div class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">
-                                                    <i class="fas fa-check text-green-600 text-sm"></i>
-                                                </div>
-                                            </div>
-                                            <div class="ml-3 flex-1">
-                                                <p class="text-sm font-medium ">Windows PC</p>
-                                                <p class="text-sm text-gray-500">Hà Nội, Việt Nam • Hôm nay, 09:15</p>
-                                            </div>
-                                            <div class="ml-4">
-                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                    Thành công
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    
-                                    <li class="login-item py-3 px-2 rounded cursor-pointer">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <div class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">
-                                                    <i class="fas fa-check text-green-600 text-sm"></i>
-                                                </div>
-                                            </div>
-                                            <div class="ml-3 flex-1">
-                                                <p class="text-sm font-medium ">iPhone 13 Pro</p>
-                                                <p class="text-sm text-gray-500">Đà Nẵng, Việt Nam • Hôm qua, 18:30</p>
-                                            </div>
-                                            <div class="ml-4">
-                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                    Thành công
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    
-                                    <li class="login-item py-3 px-2 rounded cursor-pointer">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <div class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">
-                                                    <i class="fas fa-check text-green-600 text-sm"></i>
-                                                </div>
-                                            </div>
-                                            <div class="ml-3 flex-1">
-                                                <p class="text-sm font-medium ">iPad Pro</p>
-                                                <p class="text-sm text-gray-500">TP. Hồ Chí Minh, Việt Nam • 3 ngày trước, 14:20</p>
-                                            </div>
-                                            <div class="ml-4">
-                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                    Thành công
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            
-                            <div id="failed-tab" class="tab-content hidden">
-                                <ul class="divide-y divide-gray-200">
-                                    <li class="login-item py-3 px-2 rounded cursor-pointer">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <div class="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center">
-                                                    <i class="fas fa-times text-red-600 text-sm"></i>
-                                                </div>
-                                            </div>
-                                            <div class="ml-3 flex-1">
-                                                <p class="text-sm font-medium ">Thiết bị không xác định</p>
-                                                <p class="text-sm text-gray-500">Bắc Ninh, Việt Nam • Hôm nay, 07:42</p>
-                                                <p class="text-xs text-red-500">Lý do: Sai mật khẩu</p>
-                                            </div>
-                                            <div class="ml-4">
-                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                    Thất bại
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    
-                                    <li class="login-item py-3 px-2 rounded cursor-pointer">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0">
-                                                <div class="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center">
-                                                    <i class="fas fa-times text-red-600 text-sm"></i>
-                                                </div>
-                                            </div>
-                                            <div class="ml-3 flex-1">
-                                                <p class="text-sm font-medium ">Thiết bị không xác định</p>
-                                                <p class="text-sm text-gray-500">Hà Nội, Việt Nam • 4 ngày trước, 22:15</p>
-                                                <p class="text-xs text-red-500">Lý do: Tài khoản bị khóa tạm thời</p>
-                                            </div>
-                                            <div class="ml-4">
-                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                    Thất bại
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                <s-button class="mt-4 w-full">
+                                    Trợ giúp bảo mật
+                                </s-button>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
 
             <!-- Bảng thông tin bảo mật -->
-             <div>
-            <div class="space-y-6 sticky top-0 ">
-                <!-- Trạng thái bảo mật -->
-                <div class="bg-white rounded-lg dark:bg-[#181818]">
+            <div>
+                <div class="space-y-6 sticky top-0 ">
+                 
+                    <!-- Trạng thái bảo mật -->
+                    <div class="bg-white rounded-lg dark:bg-[#181818]">
+                        <div class="px-4 py-5 sm:p-6">
+                            <h3 class="text-lg leading-6 font-medium ">Trạng thái bảo mật</h3>
+                            <div class="mt-5">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <div
+                                            class="h-12 w-12 rounded-full bg-yellow-100 flex items-center justify-center">
+                                            <i class="fas fa-exclamation-triangle text-yellow-600"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h4 class="text-sm font-medium text-yellow-800">Bảo mật trung bình</h4>
+                                        <p class="mt-1 text-sm text-yellow-700">Tài khoản của bạn cần được bảo vệ tốt
+                                            hơn</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 65%"></div>
+                                    </div>
+                                    <div class="mt-1 text-xs text-gray-500 flex justify-between">
+                                        <span>Yếu</span>
+                                        <span>Trung bình</span>
+                                        <span>Mạnh</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 space-y-2">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                        <span class="text-sm text-gray-600">Mật khẩu mạnh</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                                        <span class="text-sm text-gray-600">Chưa bật 2FA</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                        <span class="text-sm text-gray-600">Thông tin khôi phục đã cập nhật</span>
+                                    </div>
+                                </div>
+                                <s-button theme="solid" class="mt-4 w-full">
+                                    Nâng cấp bảo mật
+                                </s-button>
+                            </div>
+                        </div>
+                    </div>
+                       <!-- Mật khẩu -->
+                <div class="bg-white rounded-lg dark:bg-[#181818] security-card">
                     <div class="px-4 py-5 sm:p-6">
-                        <h3 class="text-lg leading-6 font-medium ">Trạng thái bảo mật</h3>
-                        <div class="mt-5">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg leading-6 font-medium ">Mật khẩu</h3>
+                                <p class="mt-1 text-sm text-gray-500">Thay đổi mật khẩu đăng nhập của bạn</p>
+                            </div>
+                            <div class="ml-4 flex-shrink-0">
+                                <s-button @click="showDialog" theme="solid">
+                                    Thay đổi
+                                </s-button>
+                            </div>
+                        </div>
+                        <div class="mt-4">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0">
-                                    <div class="h-12 w-12 rounded-full bg-yellow-100 flex items-center justify-center">
-                                        <i class="fas fa-exclamation-triangle text-yellow-600"></i>
+                                    <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
+                                        <IconTick class="text-green-600" size="large" />
                                     </div>
                                 </div>
                                 <div class="ml-4">
-                                    <h4 class="text-sm font-medium text-yellow-800">Bảo mật trung bình</h4>
-                                    <p class="mt-1 text-sm text-yellow-700">Tài khoản của bạn cần được bảo vệ tốt hơn</p>
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 65%"></div>
-                                </div>
-                                <div class="mt-1 text-xs text-gray-500 flex justify-between">
-                                    <span>Yếu</span>
-                                    <span>Trung bình</span>
-                                    <span>Mạnh</span>
-                                </div>
-                            </div>
-                            <div class="mt-4 space-y-2">
-                                <div class="flex items-center">
-                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                                    <span class="text-sm text-gray-600">Mật khẩu mạnh</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-times-circle text-red-500 mr-2"></i>
-                                    <span class="text-sm text-gray-600">Chưa bật 2FA</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                                    <span class="text-sm text-gray-600">Thông tin khôi phục đã cập nhật</span>
-                                </div>
-                            </div>
-                            <s-button theme="solid" class="mt-4 w-full">
-                                Nâng cấp bảo mật
-                            </s-button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Khuyến nghị bảo mật -->
-                <div class="bg-white dark:bg-[#181818] rounded-lg">
-                    <div class="px-4 py-5 sm:p-6">
-                        <h3 class="text-lg leading-6 font-medium ">Khuyến nghị bảo mật</h3>
-                        <div class="mt-4 space-y-4">
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0">
-                                    <i class="fas fa-shield-alt text-blue-500 mt-1"></i>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm font-medium ">Bật xác thực hai yếu tố</p>
-                                    <p class="text-sm text-gray-500">Tăng cường bảo vệ tài khoản của bạn</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0">
-                                    <i class="fas fa-key text-blue-500 mt-1"></i>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm font-medium ">Thay đổi mật khẩu định kỳ</p>
-                                    <p class="text-sm text-gray-500">Nên thay đổi mỗi 3 tháng một lần</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0">
-                                    <i class="fas fa-mobile-alt text-blue-500 mt-1"></i>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm font-medium ">Quản lý thiết bị đã đăng nhập</p>
-                                    <p class="text-sm text-gray-500">Xóa các thiết bị không sử dụng</p>
+                                    <p class="text-sm font-medium ">Mật khẩu mạnh</p>
+                                    <p class="text-sm text-gray-500">Đã cập nhật 3 tháng trước</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Liên hệ hỗ trợ -->
-                <div class="bg-white rounded-lg dark:bg-[#181818]">
-                    <div class="px-4 py-5 sm:p-6">
-                        <h3 class="text-lg leading-6 font-medium ">Cần hỗ trợ?</h3>
-                        <div class="mt-4">
-                            <p class="text-sm text-gray-500">Nếu bạn nghi ngờ tài khoản của mình bị xâm phạm hoặc có câu hỏi về bảo mật, hãy liên hệ với chúng tôi.</p>
-                            <div class="mt-4 space-y-3">
-                                <a href="#" class="flex items-center text-sm font-medium text-blue-600 hover:text-blue-500">
-                                    <i class="fas fa-envelope mr-2"></i>
-                                    security@securesso.vn
-                                </a>
-                                <a href="#" class="flex items-center text-sm font-medium text-blue-600 hover:text-blue-500">
-                                    <i class="fas fa-phone-alt mr-2"></i>
-                                    1900 1234
-                                </a>
+                    <!-- Khuyến nghị bảo mật -->
+                    <div class="bg-white dark:bg-[#181818] rounded-lg">
+                        <div class="px-4 py-5 sm:p-6">
+                            <h3 class="text-lg leading-6 font-medium ">Khuyến nghị bảo mật</h3>
+                            <div class="mt-4 space-y-4">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-shield-alt text-blue-500 mt-1"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium ">Bật xác thực hai yếu tố</p>
+                                        <p class="text-sm text-gray-500">Tăng cường bảo vệ tài khoản của bạn</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-key text-blue-500 mt-1"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium ">Thay đổi mật khẩu định kỳ</p>
+                                        <p class="text-sm text-gray-500">Nên thay đổi mỗi 3 tháng một lần</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-mobile-alt text-blue-500 mt-1"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium ">Quản lý thiết bị đã đăng nhập</p>
+                                        <p class="text-sm text-gray-500">Xóa các thiết bị không sử dụng</p>
+                                    </div>
+                                </div>
                             </div>
-                            <s-button class="mt-4 w-full">
-                                Trợ giúp bảo mật
-                            </s-button>
                         </div>
                     </div>
+
+                    
                 </div>
             </div>
         </div>
-        </div>
     </div>
 
-    
+    <Modal :title="confirm" centered :visible="visible" @ok="handleOk" :afterClose="handleAfterClose"
+        @cancel="handleCancel" :closeOnEsc="true" :footerFill="true">
+        <Form>
+            <template #default="{ formState, formApi, values }">
+
+
+                <Form.Input label="Mật khẩu hiện tại" placeholder="Nhập mật khẩu hiện tại" field="currentPassword"
+                    size="large" :rules="[{ required: true, message: $t('app:error.requireFiled') }]" mode="password" />
+                <Form.Input label="Mật khẩu mới" placeholder="Nhập mật khẩu mới" field="newPassword" size="large"
+                    :rules="[{ required: true, pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/, message: 'Ít nhất 8 ký tự, gồm chữ, số và ký tự đặc biệt' }]"
+                    mode="password" />
+                <Form.Input label="Xác nhận mật khẩu mới" placeholder="Xác nhận mật khẩu mới" field="rePassword"
+                    size="large" :rules="[{
+                        required: true, validator(rule, value, callback, source, options) {
+                            if (value !== formState.values.newPassword) {
+                                callback(new Error('Mật khẩu xác nhận không khớp'));
+                            } else {
+                                callback();
+                            }
+                        },
+                    }]" mode="password" />
+            </template>
+        </Form>
+    </Modal>
+
 </template>
